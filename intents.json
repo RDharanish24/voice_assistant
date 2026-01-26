@@ -1,0 +1,99 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hi",
+        "hello",
+        "hey",
+        "hey there",
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "how are you",
+        "how are you doing",
+        "what's up",
+        "are you there"
+      ],
+      "responses": [
+        "Hello!",
+        "Hi there 😊",
+        "Hey! How can I help you?",
+        "Hello! What can I do for you today?",
+        "Hi! Nice to see you."
+      ]
+    },
+    {
+      "tag": "add_todo",
+      "patterns": [
+        "add to do",
+        "add todo",
+        "add task",
+        "add something to my todo list",
+        "add an item",
+        "put something in todo",
+        "remember this task",
+        "add a task for me",
+        "can you add to my todo list"
+      ],
+      "responses": [
+        "What do you want to add to your todo list?",
+        "Please tell me the task you'd like to add.",
+        "Sure, what should I add to your todo?"
+      ]
+    },
+    {
+      "tag": "show_todo",
+      "patterns": [
+        "show to do",
+        "show my todo list",
+        "what's in my todo list",
+        "list my tasks",
+        "display todo",
+        "what do i have to do",
+        "show all tasks",
+        "read my todo list",
+        "what are my tasks"
+      ],
+      "responses": [
+        "Here are the items in your todo list:",
+        "Your todo list contains the following tasks:",
+        "These are your current todo items:"
+      ]
+    },
+    {
+      "tag": "create_note",
+      "patterns": [
+        "create a note",
+        "make a note",
+        "write a note",
+        "take a note",
+        "note this down",
+        "can you create a note",
+        "help me create a note"
+      ],
+      "responses": [
+        "What would you like me to write in your note?",
+        "Please tell me the content of your note.",
+        "Sure, what should I put in the note?"
+      ]
+    },
+    {
+      "tag": "exit",
+      "patterns": [
+        "bye",
+        "goodbye",
+        "exit",
+        "quit",
+        "see you later",
+        "stop",
+        "close the assistant"
+      ],
+      "responses": [
+        "Goodbye! Have a great day!",
+        "See you later!",
+        "Assistant is shutting down. Bye!"
+      ]
+    }
+  ]
+}
