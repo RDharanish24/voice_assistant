@@ -39,6 +39,7 @@ voice_assistant/
 ├── intents.json        # Intent patterns and responses
 ├── requirements.txt    # Project dependencies
 ├── README.md           # Project documentation
+├── main.py             # main core of project
 └── venv/               # Virtual environment (optional)
 
 ```
@@ -66,7 +67,7 @@ pip install PyAudio-0.2.xx-cp3x-cp3x-win_amd64.whl
 ```
 #### ▶️ How to Run
 ```
-python testing.py
+python main.py
 ```
 
 #### You should hear:

@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 import time
 
 speaker = pyttsx3.init('sapi5')  
-speaker.setProperty('rate', 180)
+speaker.setProperty('rate', 200)
 voices = speaker.getProperty('voices')
 speaker.setProperty('voice', voices[0].id)  
 
@@ -99,9 +99,10 @@ def quit_app():
     speak("Goodbye!")
     sys.exit(0)
 
+
 actions = {
-    "greeting": lambda: (
-                         speak(random.choice(responses.get("greeting", ["Hello!"])))),
+    "greeting": lambda: (speak(random.choice(responses.get("greeting", ["Hello!"])))),
+    "name":lambda:(speak(random.choice(responses.get("name")))),
     "create_note": create_note,
     "add_todo": add_todo,
     "show_todo": show_todo,

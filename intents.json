@@ -94,6 +94,12 @@
         "See you later!",
         "Assistant is shutting down. Bye!"
       ]
+    },
+    {
+      "tag":"name",
+      "patterns":["what is your name","how can i call you","your name","name","call"],
+      "responses":["you can call me jarvis","my name is jarvis","hey! i am jarvis , how can i help you"]
     }
+    
   ]
 }
