@@ -8,18 +8,20 @@ from sklearn.linear_model import LogisticRegression
 import time
 
 speaker = pyttsx3.init('sapi5')  
-speaker.setProperty('rate', 200)
+speaker.setProperty('rate', 180)
 voices = speaker.getProperty('voices')
 speaker.setProperty('voice', voices[0].id)  
 
 recognizer = sr.Recognizer()
 todo_list = ['workout', 'eat']
+is_awake=False
+wake_word="hey jarvis"
+sleeping_word="sleep jarvis"
 
 def speak(text):
     print(f"Assistant says: {text}")
     speaker.say(text)
     speaker.runAndWait()
-    speaker.stop()
     time.sleep(0.3)  
 
 with open("intents.json", "r", encoding="utf-8") as f:
@@ -100,6 +102,8 @@ def quit_app():
     sys.exit(0)
 
 
+
+
 actions = {
     "greeting": lambda: (speak(random.choice(responses.get("greeting", ["Hello!"])))),
     "name":lambda:(speak(random.choice(responses.get("name")))),
@@ -110,34 +114,53 @@ actions = {
 }
 
 speak("Assistant started. How can I help you?")
-
-while True:
-    try:
-        with sr.Microphone() as mic:
+with sr.Microphone() as mic:
+            print("calibrating microphone")
             recognizer.adjust_for_ambient_noise(mic, duration=0.3)
-            print("Listening...")
+            print("calibration complete")
+while True:
+   
+    try:
+        print("awake" if is_awake else "sleeping" )
+        with sr.Microphone() as mic:
             audio = recognizer.listen(mic, timeout=5, phrase_time_limit=7)
             message = recognizer.recognize_google(audio).lower()
 
-        print("You said:", message)
-        intent = predict_intent(message)
+        if not is_awake and wake_word in message:
+                is_awake=True
+                print("now running")
+                speak("hey boss")
+                continue
+        if is_awake and sleeping_word in message:
+                is_awake=False
+                print("going to sleep")
+                speak("see you boss")
+                continue
+        if  is_awake:
+            print("You said:", message)
+            intent = predict_intent(message)
 
-        action = actions.get(intent)
-        if action:
-            try:
-                action()
-            except Exception as e:
-                print(f"Error during action execution: {e}")
-                speak("Sorry, something went wrong during the action.")
+            action = actions.get(intent)
+            if action:
+                try:
+                    action()
+                except Exception as e:
+                    print(f"Error during action execution: {e}")
+                    speak("Sorry, something went wrong during the action.")
+            else:
+                print(f"No action found for intent: {intent}")
+                speak("I don't understand.")
         else:
-            print(f"No action found for intent: {intent}")
-            speak("I don't understand.")
+            pass
 
     except sr.UnknownValueError:
         print("Speech not understood.")
-        speak("Can you repeat that?")
+        if is_awake:
+         speak("Can you repeat that?")
     except sr.WaitTimeoutError:
         print("Listening timed out, no speech detected.")
+        if is_awake:
+            pass
     except Exception as e:
         print(f"Unexpected error: {e}")
         speak("Sorry, something unexpected happened.")

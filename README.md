@@ -12,12 +12,15 @@ A simple AI-based Voice Assistant built using Python that can understand voice c
 
 🗣️ Text-to-Speech responses
 
+🔑 Wake word activation ("hey jarvis") and sleep command ("sleep jarvis")
+
 📝 Create notes using voice
 
 ✅ Manage a todo list
 
 👋 Greeting & exit commands
 
+---
 ## 🛠️ Tech Stack
 
 Python 3.x
@@ -36,54 +39,57 @@ numpy
 ```
 voice_assistant/
 │
-├── intents.json        # Intent patterns and responses
-├── requirements.txt    # Project dependencies
-├── README.md           # Project documentation
-├── main.py             # main core of project
-└── venv/               # Virtual environment (optional)
-
+├── intents.json        # Intent patterns and responses  
+├── requirements.txt    # Project dependencies  
+├── README.md           # Project documentation  
+├── main.py             # Main application code  
+└── venv/               # Virtual environment (optional)  
 ```
+---
 ## 📦 Installation
-#### 1️⃣ Create virtual environment (recommended)
+1️⃣ Create virtual environment (recommended)
 ```
 python -m venv venv
-
-venv\Scripts\activate
+venv\Scripts\activate   # Windows
+# or
+source venv/bin/activate  # macOS/Linux
 ```
-#### 2️⃣ Install dependencies
+2️⃣ Install dependencies
 ```
 pip install -r requirements.txt
 ```
+⚠️ Windows users:
 
-## ⚠️ Windows users:
+If installing pyaudio fails, download the appropriate wheel from:
 
-If pyaudio fails to install, download the .whl file from:
-```
 https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio
-```
-and install it manually:
+
+
+Then install it manually:
 ```
 pip install PyAudio-0.2.xx-cp3x-cp3x-win_amd64.whl
 ```
-#### ▶️ How to Run
+▶️ How to Run
 ```
 python main.py
 ```
 
-#### You should hear:
-
+You should hear:
+```
 Assistant started. How can I help you?
-
-##### 🗣️ Example Voice Commands
+```
+🗣️ Example Voice Commands
 ```
 Command	Action
+"hey jarvis"	Wake up assistant
+"sleep jarvis"	Put assistant to sleep
 "hello"	Greeting
-"add to do"	Add item to todo list
+"add todo"	Add item to todo list
 "show todo"	Read todo list
 "create note"	Create a text note
 "exit"	Close assistant
 ```
-### 🧠 How It Works
+## 🧠 How It Works
 
 Voice input captured via microphone
 
@@ -97,28 +103,25 @@ Corresponding action executed
 
 Response spoken using pyttsx3
 
-### 📄 Sample Intent (intents.json)
+## 📄 Sample Intent (intents.json)
 ```
 {
   "tag": "greeting",
   "patterns": ["hi", "hello", "hey"],
   "responses": ["Hello!", "Hi there!", "Hey! How can I help you?"]
 }
+
+
+The full intents.json file is included in the repository.
 ```
+## 🚀 Future Improvements
 
+Persistent todo list storage (file or database)
 
-Intents.json is available in the repository also
+GUI interface with visual wake/sleep indicators
 
----
+Convert to standalone executable (.exe)
 
-### 🚀 Future Improvements
+Improve intent classification accuracy with deep learning
 
-Wake word detection
-
-Persistent todo storage
-
-GUI interface
-
-Convert to .exe
-
-Improve intent accuracy with deep learning
+Add natural language understanding for more flexible commands
